@@ -15,9 +15,9 @@ public class SpriteFaceHandler : MonoBehaviour
 
     void Update()
     {
-        transform.LookAt(toLookAt, Vector3.up);
+        transform.LookAt(toLookAt);
 
-        float yRotation = transform.rotation.eulerAngles.y;
+        float yRotation = transform.rotation.eulerAngles.y + 180;
         transform.rotation = Quaternion.Euler(new Vector3(0, yRotation, 0));
     }
 }

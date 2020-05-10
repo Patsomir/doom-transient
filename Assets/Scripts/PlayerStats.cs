@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static AmmoType;
 public class PlayerStats : MonoBehaviour
@@ -15,36 +16,7 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField]
     private int[] ammo = { 40, 0, 0, 0 };
-    public float Speed
-    {
-        get { return speed; }
-        private set { speed = value; }
-    }
-
-    public int Bullets
-    {
-        get { return ammo[0]; }
-        private set { ammo[0] = value; }
-    }
-
-    public int Shells
-    {
-        get { return ammo[1]; }
-        private set { ammo[1] = value; }
-    }
-
-    public int Rockets
-    {
-        get { return ammo[2]; }
-        private set { ammo[2] = value; }
-    }
-
-    public int Cells
-    {
-        get { return ammo[3]; }
-        private set { ammo[3] = value; }
-    }
-
+    
     void Start()
     {
         player = GetComponent<Transform>();
@@ -58,6 +30,42 @@ public class PlayerStats : MonoBehaviour
         previousPosition = player.position;
     }
 
+    public int Health
+    {
+        get { return health; }
+        private set { health = value; }
+    }
+    public int Armor
+    {
+        get { return armor; }
+        private set { armor = value; }
+    }
+    public float Speed
+    {
+        get { return speed; }
+        private set { speed = value; }
+    }
+    public int Bullets
+    {
+        get { return ammo[0]; }
+        private set { ammo[0] = value; }
+    }
+    public int Shells
+    {
+        get { return ammo[1]; }
+        private set { ammo[1] = value; }
+    }
+    public int Rockets
+    {
+        get { return ammo[2]; }
+        private set { ammo[2] = value; }
+    }
+    public int Cells
+    {
+        get { return ammo[3]; }
+        private set { ammo[3] = value; }
+    }
+ 
     public void useAmmo(AmmoType type, int count, out bool isSuccessful)
     {
         if (ammo[(int)type] < count)
