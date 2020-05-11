@@ -56,16 +56,11 @@ class Pistol : Weapon
         RaycastHit target;
         if(Physics.Raycast(position, direction, out target))
         {
-            Debug.DrawRay(position, direction * target.distance, Color.green);
-            Debug.Log("Hit ");
             if (target.collider.CompareTag("Demon"))
             {
-                Debug.Log("Rip and Tear");
+                DemonStats demon = target.collider.gameObject.GetComponent<DemonStats>();
+                demon.TakeDamage(GetEffectiveDamage());
             }
-        } else
-        {
-            Debug.DrawRay(position, direction * 1000, Color.red);
-            Debug.Log("Miss");
         }
     }
         
