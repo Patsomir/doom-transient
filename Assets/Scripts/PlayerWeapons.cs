@@ -49,7 +49,7 @@ public class PlayerWeapons : MonoBehaviour
 
 class Pistol : Weapon
 {
-    public Pistol() : base(AmmoType.BULLET, 1, 5, 5, 0.5f) { }
+    public Pistol() : base(AmmoType.BULLET, 1, 10, 5, 0.5f) { }
 
     public override void ShootFrom(Vector3 position, Vector3 direction)
     {

@@ -10,11 +10,7 @@ public class DemonStats : MonoBehaviour
     {
         IsDead = false;
     }
-    void Update()
-    {
-        
-    }
-
+    
     public int Health
     {
         get { return health; }
