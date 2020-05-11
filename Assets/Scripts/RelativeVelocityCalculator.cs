@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RelativeVelocityCalculator : MonoBehaviour
 {
     [SerializeField]
-    private Transform target = null;
+    private Transform origin = null;
 
     [SerializeField]
     [Range(0, 1)]
@@ -19,6 +17,10 @@ public class RelativeVelocityCalculator : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         previousPosition = transform.position;
+        if(origin == null)
+        {
+            origin = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
     void Update()
     {
@@ -31,12 +33,12 @@ public class RelativeVelocityCalculator : MonoBehaviour
     public Vector2 GetRelativeVelocity()
     {
         Vector3 absoluteVelocity = (transform.position - previousPosition).normalized;
-        Vector3 targetDirection = (target.position - transform.position).normalized;
+        Vector3 originDirection = (origin.position - transform.position).normalized;
 
-        float determinant = targetDirection.x * absoluteVelocity.z -
-                            absoluteVelocity.x * targetDirection.z;
+        float determinant = originDirection.x * absoluteVelocity.z -
+                            absoluteVelocity.x * originDirection.z;
 
-        float relativeVelocityZ = -Mathf.Sign(Vector3.Dot(targetDirection, absoluteVelocity));
+        float relativeVelocityZ = -Mathf.Sign(Vector3.Dot(originDirection, absoluteVelocity));
         float relativeVelocityX = Mathf.Sign(determinant);
 
         if (Mathf.Abs(determinant) < diagonalWalkingThreshold)

@@ -6,9 +6,10 @@ public class DemonStats : MonoBehaviour
     [SerializeField]
     private int health = 20;
 
+    private Transform target = null;
     void Start()
     {
-        IsDead = false;
+
     }
     
     public int Health
@@ -17,19 +18,24 @@ public class DemonStats : MonoBehaviour
         private set { health = value; }
     }
 
-    public bool IsDead
+    public Vector3 GetTargetPosition()
     {
-        get;
-        private set;
+        return target.position;
     }
 
-    public void TakeDamage(int damage)
+    public bool HasTarget()
+    {
+        return target != null;
+    }
+
+    public bool IsDead()
+    {
+        return Health <= 0;
+    }
+
+    public void TakeDamage(int damage, Transform attacker)
     {
         Health = Math.Max(0, health - damage);
-        if(Health == 0)
-        {
-            IsDead = true;
-        }
-        Debug.Log(Health);
+        target = attacker;
     }
 }

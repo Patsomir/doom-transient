@@ -14,36 +14,53 @@ public class PlayerWeapons : MonoBehaviour
 
     private float currentReloadTimestamp = 0;
 
-    private Camera cam = null;
-    public bool IsRealoading { get; private set; } = false;
+    private Camera playerPosition = null;
+    public bool IsRealoading() {
+        return Time.time < currentReloadTimestamp;
+    }
     public bool ShotThisFrame { get; private set; } = false;
+
+    public const int weaponSlots = 6;
 
     void Start()
     {
-        weapons = new Weapon[6];
-        weapons[0] = new Pistol();
-        cam = Camera.main;
+        weapons = new Weapon[weaponSlots];
+        EquipWeaponOnSlot(0, new Pistol());
+        playerPosition = Camera.main;
     }
     void Update()
     {
-        IsRealoading = Time.time < currentReloadTimestamp;
-
-        if (Input.GetMouseButtonDown(0) && !IsRealoading)
+        if (Input.GetMouseButtonDown(0) && !IsRealoading())
         {
-            bool wasSuccessful;
-            ammo.useAmmo(weapons[currentWeapon].Type, weapons[currentWeapon].Cost, out wasSuccessful);
-            ShotThisFrame = wasSuccessful;
-            if (wasSuccessful)
-            {
-                Vector3 position = cam.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, cam.nearClipPlane));
-                Vector3 direction = cam.transform.forward;
-                weapons[currentWeapon].ShootFrom(position, direction);
-                currentReloadTimestamp = Time.time + weapons[currentWeapon].ReloadTime;
-            }
+            Shoot();
         } else
         {
             ShotThisFrame = false;
         }
+    }
+
+    public void Shoot()
+    {
+        bool wasSuccessful;
+        ammo.useAmmo(weapons[currentWeapon].Type, weapons[currentWeapon].Cost, out wasSuccessful);
+        ShotThisFrame = wasSuccessful;
+        if (wasSuccessful)
+        {
+            Vector3 position = playerPosition.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, playerPosition.nearClipPlane));
+            Vector3 direction = playerPosition.transform.forward;
+            weapons[currentWeapon].ShootFrom(position, direction);
+            currentReloadTimestamp = Time.time + weapons[currentWeapon].ReloadTime;
+        }
+    }
+
+    public void EquipWeaponOnSlot(int slot, Weapon weapon)
+    {
+        if(slot < weaponSlots && slot >= 0)
+        {
+            weapon.Owner = transform;
+            weapons[slot] = weapon;
+        }
+
     }
 }
 
@@ -59,7 +76,7 @@ class Pistol : Weapon
             if (target.collider.CompareTag("Demon"))
             {
                 DemonStats demon = target.collider.gameObject.GetComponent<DemonStats>();
-                demon.TakeDamage(GetEffectiveDamage());
+                demon.TakeDamage(GetEffectiveDamage(), Owner);
             }
         }
     }

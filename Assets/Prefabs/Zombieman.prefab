@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 8591572839998079511}
   - component: {fileID: 8591572839998079505}
   - component: {fileID: 8591572839998079518}
+  - component: {fileID: 3304641638764994431}
+  - component: {fileID: 6693251096740437494}
   m_Layer: 0
   m_Name: Zombieman
   m_TagString: Demon
@@ -208,5 +210,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 184d559ba50232b4ebcea560c1ec67f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3304641638764994431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591572839676858378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ffad074255e0334a88d83b999c104dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 9
+  diviation: 6
+  accuracyError: 10
+  target: {fileID: 0}
+--- !u!114 &6693251096740437494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591572839676858378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f348a713e6bb7d34ba4f5e709b7187e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

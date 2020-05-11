@@ -19,7 +19,7 @@ public class WeaponUIPropertyUpdater : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Speed", player.Speed);
-        animator.SetBool("IsReloading", weapons.IsRealoading);
+        animator.SetBool("IsReloading", weapons.IsRealoading());
         if (weapons.ShotThisFrame)
         {
             animator.SetTrigger("Shoot");

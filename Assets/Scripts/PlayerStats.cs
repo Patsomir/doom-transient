@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using static AmmoType;
@@ -13,6 +14,10 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField]
     private int armor = 0;
+
+    [SerializeField]
+    [Range(0, 1)]
+    private float armorAbsorbtionRate = 1.0f / 3.0f;
 
     [SerializeField]
     private int[] ammo = { 40, 0, 0, 0 };
@@ -75,5 +80,24 @@ public class PlayerStats : MonoBehaviour
         }
         ammo[(int)type] -= count;
         isSuccessful = true;
+    }
+
+    public bool IsDead()
+    {
+        return Health <= 0;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        int armorDamage = (int) (damage * armorAbsorbtionRate);
+        int healthDamage = damage - armorDamage;
+
+        Armor -= armorDamage;
+        if(Armor < 0)
+        {
+            healthDamage -= Armor;
+            Armor = 0;
+        }
+        Health = Math.Max(0, Health - healthDamage);
     }
 }
