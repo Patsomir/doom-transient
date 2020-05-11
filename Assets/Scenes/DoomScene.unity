@@ -4776,6 +4776,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024335947}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1048222496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2860653344463960939, guid: 9fb725c899bc2304c988867d69aec4fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2860653344074740309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1048222500
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048222496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.205
+  m_Height: 0.55
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1057467967
 GameObject:
   m_ObjectHideFlags: 0
@@ -12341,6 +12361,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombieman
       objectReference: {fileID: 0}
+    - target: {fileID: 2860653344463960939, guid: 9fb725c899bc2304c988867d69aec4fb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Demon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fb725c899bc2304c988867d69aec4fb, type: 3}
 --- !u!1001 &3599184293203552324
@@ -12428,6 +12453,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997780164332074417, guid: 85a90bad64d3e6e4486e7f1371992138,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3997780164332074420, guid: 85a90bad64d3e6e4486e7f1371992138,
         type: 3}

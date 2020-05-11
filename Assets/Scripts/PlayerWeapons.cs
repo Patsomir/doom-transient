@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Transactions;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using static AmmoType;
 
 public class PlayerWeapons : MonoBehaviour
@@ -11,13 +13,16 @@ public class PlayerWeapons : MonoBehaviour
     private int currentWeapon = 0;
 
     private float currentReloadTimestamp = 0;
+
+    private Camera cam = null;
     public bool IsRealoading { get; private set; } = false;
     public bool ShotThisFrame { get; private set; } = false;
 
     void Start()
     {
         weapons = new Weapon[6];
-        weapons[0] = new Weapon(AmmoType.BULLET, 1, 0.5f);
+        weapons[0] = new Pistol();
+        cam = Camera.main;
     }
     void Update()
     {
@@ -30,6 +35,9 @@ public class PlayerWeapons : MonoBehaviour
             ShotThisFrame = wasSuccessful;
             if (wasSuccessful)
             {
+                Vector3 position = cam.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, cam.nearClipPlane));
+                Vector3 direction = cam.transform.forward;
+                weapons[currentWeapon].ShootFrom(position, direction);
                 currentReloadTimestamp = Time.time + weapons[currentWeapon].ReloadTime;
             }
         } else
@@ -37,4 +45,28 @@ public class PlayerWeapons : MonoBehaviour
             ShotThisFrame = false;
         }
     }
+}
+
+class Pistol : Weapon
+{
+    public Pistol() : base(AmmoType.BULLET, 1, 5, 5, 0.5f) { }
+
+    public override void ShootFrom(Vector3 position, Vector3 direction)
+    {
+        RaycastHit target;
+        if(Physics.Raycast(position, direction, out target))
+        {
+            Debug.DrawRay(position, direction * target.distance, Color.green);
+            Debug.Log("Hit ");
+            if (target.collider.CompareTag("Demon"))
+            {
+                Debug.Log("Rip and Tear");
+            }
+        } else
+        {
+            Debug.DrawRay(position, direction * 1000, Color.red);
+            Debug.Log("Miss");
+        }
+    }
+        
 }
