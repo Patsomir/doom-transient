@@ -171,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340365b7961efa949af6fba374752d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   speed: 1
 --- !u!114 &8591572839998079511
 MonoBehaviour:
@@ -185,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89df7628be49ff4da825001b1ca8dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  origin: {fileID: 0}
   diagonalWalkingThreshold: 0.2
 --- !u!114 &8591572839998079505
 MonoBehaviour:
@@ -227,7 +226,6 @@ MonoBehaviour:
   damage: 9
   diviation: 6
   accuracyError: 10
-  target: {fileID: 0}
 --- !u!114 &6693251096740437494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,3 +238,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348a713e6bb7d34ba4f5e709b7187e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origin: {fileID: 0}
+  diagonalShootingThreshold: 0.2

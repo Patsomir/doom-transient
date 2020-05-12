@@ -13,22 +13,9 @@ public class ZombiemanWeapon : MonoBehaviour
     [SerializeField]
     private float accuracyError = 10;
 
-    [SerializeField]
-    private Transform target = null;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        Shoot(target.position - transform.position);
-    }
-
     public int GetEffectiveDamage()
     {
-        return (int)Mathf.Round(Random.Range(damage - diviation, damage + diviation));
+        return Random.Range(damage - diviation, damage + diviation);
     }
 
     public void Shoot(Vector3 direction)

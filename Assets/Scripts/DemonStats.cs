@@ -7,11 +7,7 @@ public class DemonStats : MonoBehaviour
     private int health = 20;
 
     private Transform target = null;
-    void Start()
-    {
 
-    }
-    
     public int Health
     {
         get { return health; }
@@ -33,6 +29,10 @@ public class DemonStats : MonoBehaviour
         return Health <= 0;
     }
 
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
     public void TakeDamage(int damage, Transform attacker)
     {
         Health = Math.Max(0, health - damage);

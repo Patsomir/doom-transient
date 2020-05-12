@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class ZombiemanMovement : MonoBehaviour
 {
-    [SerializeField]
-    private Transform player = null;
-
     [SerializeField]
     [Range(0.5f, 3)]
     private float speed = 1;
@@ -30,17 +28,15 @@ public class ZombiemanMovement : MonoBehaviour
         agent.speed = initialSpeed * speed;
         agent.angularSpeed = initialAngularSpeed * speed;
         agent.acceleration = initialAccelaration * speed;
-
-        MoveTo(player.position);
     }
 
-    void MoveTo(Vector3 position)
+    public void MoveTo(Vector3 position)
     {
         agent.destination = position;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Move(Vector3 direction)
     {
-        Debug.Log("Yauch");
+        agent.destination = transform.position + direction;
     }
 }

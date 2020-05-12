@@ -22,7 +22,7 @@ public abstract class Weapon
 
     public int GetEffectiveDamage()
     {
-        return (int) Mathf.Round(Random.Range(Damage - Diviation, Damage + Diviation));
+        return Random.Range(Damage - Diviation, Damage + Diviation);
     }
     public abstract void ShootFrom(Vector3 position, Vector3 direction);
 }

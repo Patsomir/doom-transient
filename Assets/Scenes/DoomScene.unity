@@ -9384,6 +9384,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 450739742}
+    - target: {fileID: 3304641638764994431, guid: 92b320f415d42e94485b0e544198a837,
+        type: 3}
+      propertyPath: accuracyError
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6693251096740437494, guid: 92b320f415d42e94485b0e544198a837,
         type: 3}
       propertyPath: origin
@@ -9459,6 +9464,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 450739742}
+    - target: {fileID: 8591572839998079509, guid: 92b320f415d42e94485b0e544198a837,
+        type: 3}
+      propertyPath: speed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8591572839998079511, guid: 92b320f415d42e94485b0e544198a837,
         type: 3}
       propertyPath: target
