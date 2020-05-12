@@ -10,6 +10,12 @@ public class PlayerStats : MonoBehaviour
     private float speed;
 
     [SerializeField]
+    private int maxHealth = 200;
+
+    [SerializeField]
+    private int maxArmor = 200;
+
+    [SerializeField]
     private int health = 100;
 
     [SerializeField]
@@ -99,5 +105,25 @@ public class PlayerStats : MonoBehaviour
             Armor = 0;
         }
         Health = Math.Max(0, Health - healthDamage);
+    }
+
+    public bool CanTakeHealth()
+    {
+        return Health < maxHealth && !IsDead();
+    }
+
+    public bool CanTakeArmor()
+    {
+        return Armor < maxArmor;
+    }
+
+    public void TakeHealth(int value)
+    {
+        Health = Math.Min(maxHealth, Health + value);
+    }
+
+    public void TakeArmor(int value)
+    {
+        Armor = Math.Min(maxArmor, Armor + value);
     }
 }
