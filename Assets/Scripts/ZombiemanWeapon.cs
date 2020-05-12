@@ -15,7 +15,7 @@ public class ZombiemanWeapon : MonoBehaviour
 
     public int GetEffectiveDamage()
     {
-        return Random.Range(damage - diviation, damage + diviation);
+        return Random.Range(damage - diviation, damage + diviation + 1);
     }
 
     public void Shoot(Vector3 direction)
