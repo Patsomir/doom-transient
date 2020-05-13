@@ -66,17 +66,31 @@ public class PlayerWeapons : MonoBehaviour
 
 class Pistol : Weapon
 {
+    public const float offset = 0.8f;
     public Pistol() : base(AmmoType.BULLET, 1, 10, 5, 0.5f) { }
 
     public override void ShootFrom(Vector3 position, Vector3 direction)
     {
-        RaycastHit target;
-        if(Physics.Raycast(position, direction, out target))
+        Vector3[] rayOrigins =
         {
-            if (target.collider.CompareTag("Demon"))
+            new Vector3(0, offset, 0) + position,
+            new Vector3(0, offset/2, 0) + position,
+            position,
+            new Vector3(0, -offset/2, 0) + position,
+            new Vector3(0, -offset, 0) + position,
+        };
+        RaycastHit target;
+
+        foreach(Vector3 pos in rayOrigins)
+        {
+            if (Physics.Raycast(pos, direction, out target))
             {
-                DemonStats demon = target.collider.gameObject.GetComponent<DemonStats>();
-                demon.TakeDamage(GetEffectiveDamage(), Owner);
+                if (target.collider.CompareTag("Demon"))
+                {
+                    DemonStats demon = target.collider.gameObject.GetComponent<DemonStats>();
+                    demon.TakeDamage(GetEffectiveDamage(), Owner);
+                    return;
+                }
             }
         }
     }
