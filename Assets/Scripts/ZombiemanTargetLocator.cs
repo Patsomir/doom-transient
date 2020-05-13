@@ -37,10 +37,10 @@ public class ZombiemanTargetLocator : MonoBehaviour
         Vector3 targetDirection = (target.GetTargetPosition() - transform.position).normalized;
         Vector3 originDirection = (origin.position - transform.position).normalized;
 
-        float determinant = targetDirection.x * targetDirection.z -
-                            targetDirection.x * targetDirection.z;
+        float determinant = originDirection.x * targetDirection.z -
+                            originDirection.z * targetDirection.x;
 
-        float relativeTargetLocationZ = -Mathf.Sign(Vector3.Dot(targetDirection, targetDirection));
+        float relativeTargetLocationZ = -Mathf.Sign(Vector3.Dot(originDirection, targetDirection));
         float relativeTargetLocationX = Mathf.Sign(determinant);
 
         if (Mathf.Abs(determinant) < diagonalShootingThreshold)
